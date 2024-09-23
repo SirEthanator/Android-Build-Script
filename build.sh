@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Sync Everest sources and add local manifest
 rm -rf .repo/local_manifests
 repo init -u https://github.com/ProjectEverest/manifest -b 14 --git-lfs
