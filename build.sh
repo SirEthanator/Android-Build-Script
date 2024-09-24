@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Install ccache
+sudo apt install ccache
+
+
 # Sync Everest sources and add local manifest
 echo '==== Beginning sync ===='
 rm -rf .repo/local_manifests
@@ -16,6 +20,7 @@ echo '======================='
 echo '==== Replacing make_key script ===='
 rm -f development/tools/make_key
 curl https://raw.githubusercontent.com/SirEthanator/development_tools_make_key/refs/heads/main/make_key > development/tools/make_key
+chmod +x development/tools/make_key
 
 echo '==== Beginning signing ===='
 subject="/C=$COUNTRY/ST=$STATE/L=$CITY/O=$NAME/OU=$NAME/CN=$NAME/emailAddress=$EMAIL"
