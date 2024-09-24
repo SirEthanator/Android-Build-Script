@@ -21,7 +21,6 @@ echo '==== Beginning signing ===='
 subject="/C=$COUNTRY/ST=$STATE/L=$CITY/O=$NAME/OU=$NAME/CN=$NAME/emailAddress=$EMAIL"
 for x in releasekey platform shared media networkstack verity otakey testkey cyngn-priv-app sdk_sandbox bluetooth verifiedboot nfc; do
     ./development/tools/make_key vendor/lineage/signing/keys/$x "$subject"
-    
 done
 
 echo '=========================='
