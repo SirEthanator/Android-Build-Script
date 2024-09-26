@@ -18,7 +18,7 @@ if [[ $buildType == 'vanilla' ]]; then
   sed -i "s/.*WITH_GAPPS.*/WITH_GAPPS := false/" device/google/bluejay/lineage_bluejay.mk
   echo 'Build type: Vanilla'
 elif [[ $buildType != 'gapps' ]]; then
-  echo 'Buildtype not specified. Defaulting to GAPPS.'
+  echo 'Build type invalid or not specified. Defaulting to GAPPS.'
 else
   echo 'Build type: GAPPS'
 fi
