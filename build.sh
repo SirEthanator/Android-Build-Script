@@ -21,4 +21,12 @@ echo '==== Starting build ===='
 . build/envsetup.sh
 lunch lineage_bluejay-user
 mka everest
+exitStatus=$?
+
+echo '========================'
+echo '==== Build complete ===='
+echo '========================'
+echo ''
+echo "Exit status: $exitStatus"
+exit $exitStatus
 
