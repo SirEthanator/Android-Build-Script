@@ -16,18 +16,6 @@ repo init -u https://github.com/ProjectEverest/manifest -b 14 --git-lfs
 git clone https://github.com/SirEthanator/bluejay_local_manifest.git --depth 1 .repo/local_manifests
 /opt/crave/resync.sh
 
-sed -i "s/.*WITH_GAPPS.*/WITH_GAPPS := true/" device/google/bluejay/lineage_bluejay.mk
-
-buildType=$(echo "$1" | tr '[:upper:]' '[:lower:]')
-if [[ $buildType == 'vanilla' ]]; then
-  sed -i "s/.*WITH_GAPPS.*/WITH_GAPPS := false/" device/google/bluejay/lineage_bluejay.mk
-  echo 'Build type: Vanilla'
-elif [[ $buildType != 'gapps' ]]; then
-  echo 'Build type invalid or not specified. Defaulting to GAPPS.'
-else
-  echo 'Build type: GAPPS'
-fi
-
 echo -ne '\n\n\n'
 echo '==================================='
 echo '========== Sync complete =========='
@@ -41,6 +29,20 @@ echo '==================================='
 echo '========== Starting build ========='
 echo '==================================='
 echo -ne '\n\n\n'
+
+# Build type selection
+sed -i "s/.*WITH_GAPPS.*/WITH_GAPPS := true/" device/google/bluejay/lineage_bluejay.mk
+
+buildType=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+if [[ $buildType == 'vanilla' ]]; then
+  sed -i "s/.*WITH_GAPPS.*/WITH_GAPPS := false/" device/google/bluejay/lineage_bluejay.mk
+  echo 'Build type: Vanilla'
+elif [[ $buildType != 'gapps' ]]; then
+  echo 'Build type invalid or not specified. Defaulting to GAPPS.'
+else
+  echo 'Build type: GAPPS'
+fi
+echo -ne '\n'
 
 . build/envsetup.sh
 lunch lineage_bluejay-user
