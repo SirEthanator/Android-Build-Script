@@ -5,7 +5,12 @@ sudo apt update; sudo apt install -y ccache
 
 
 # Sync Everest sources and add local manifest
-echo '==== Beginning sync ===='
+echo -ne '\n\n\n'
+echo '===================================='
+echo '========== Beginning sync =========='
+echo '===================================='
+echo -ne '\n\n\n'
+
 rm -rf .repo/local_manifests
 repo init -u https://github.com/ProjectEverest/manifest -b 14 --git-lfs
 git clone https://github.com/SirEthanator/bluejay_local_manifest.git --depth 1 .repo/local_manifests
@@ -23,22 +28,30 @@ else
   echo 'Build type: GAPPS'
 fi
 
-echo '======================='
-echo '==== Sync complete ===='
-echo '======================='
+echo -ne '\n\n\n'
+echo '==================================='
+echo '========== Sync complete =========='
+echo '==================================='
+echo -ne '\n\n\n'
 
 
 # Build
-echo '==== Starting build ===='
+echo -ne '\n\n\n'
+echo '==================================='
+echo '========== Starting build ========='
+echo '==================================='
+echo -ne '\n\n\n'
+
 . build/envsetup.sh
 lunch lineage_bluejay-user
 mka everest
 exitStatus=$?
 
-echo '========================'
-echo '==== Build complete ===='
-echo '========================'
-echo ''
+echo -ne '\n\n\n'
+echo '===================================='
+echo '========== Build complete =========='
+echo '===================================='
+echo -ne '\n'
 echo "Exit status: $exitStatus"
 exit $exitStatus
 
