@@ -46,7 +46,9 @@ echo -ne '\n'
 
 . build/envsetup.sh
 lunch lineage_bluejay-user
-mka everest
+# mka everest
+mka target-files-package
+/opt/crave/crave_sign.sh
 exitStatus=$?
 
 echo -ne '\n\n\n'
