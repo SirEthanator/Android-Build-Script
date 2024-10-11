@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Install ccache
+# Install ccache and b2 cli
 sudo apt update; sudo apt install -y ccache
+sudo pip install 'b2[full]'
 
 
 # Sync Everest sources and add local manifest
@@ -48,8 +49,8 @@ echo -ne '\n'
 lunch lineage_bluejay-user
 # mka everest
 mka target-files-package
-/opt/crave/crave_sign.sh
 exitStatus=$?
+if [[ $exitStatus -eq 0 ]]; then /opt/crave/crave_sign.sh; fi
 
 echo -ne '\n\n\n'
 echo '===================================='
