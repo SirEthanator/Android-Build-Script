@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Install ccache and b2 cli
+# Install ccache
 sudo apt update; sudo apt install -y ccache
-sudo pip install 'b2[full]'
 
 
 # Sync Everest sources and add local manifest
@@ -29,7 +28,7 @@ echo -ne '\n\n\n'
 echo '==================================='
 echo '========== Starting build ========='
 echo '==================================='
-echo -ne '\n\n\n'
+echo -ne '\n'
 
 # Build type selection
 sed -i "s/.*WITH_GAPPS.*/WITH_GAPPS := true/" device/google/bluejay/lineage_bluejay.mk
@@ -43,14 +42,12 @@ elif [[ $buildType != 'gapps' ]]; then
 else
   echo 'Build type: GAPPS'
 fi
-echo -ne '\n'
+echo -ne '\n\n\n'
 
 . build/envsetup.sh
 lunch lineage_bluejay-user
-# mka everest
-mka target-files-package
+mka everest
 exitStatus=$?
-if [[ $exitStatus -eq 0 ]]; then /opt/crave/crave_sign.sh; fi
 
 echo -ne '\n\n\n'
 echo '===================================='
