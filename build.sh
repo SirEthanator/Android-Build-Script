@@ -86,10 +86,12 @@ echo '==================================='
 echo -ne '\n'
 
 # Build type selection
-sed -i "s/.*WITH_GAPPS.*/WITH_GAPPS := true/" device/google/bluejay/lineage_bluejay.mk
+if [[ ! $buildType == 'unset' ]]; then
+  sed -i "s/.*WITH_GAPPS.*/WITH_GAPPS := true/" device/google/bluejay/lineage_bluejay.mk
 
-if [[ $buildType == 'vanilla' ]]; then
-  sed -i "s/.*WITH_GAPPS.*/WITH_GAPPS := false/" device/google/bluejay/lineage_bluejay.mk
+  if [[ $buildType == 'vanilla' ]]; then
+    sed -i "s/.*WITH_GAPPS.*/WITH_GAPPS := false/" device/google/bluejay/lineage_bluejay.mk
+  fi
 fi
 echo -ne '\n\n\n'
 
