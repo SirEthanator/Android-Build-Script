@@ -38,7 +38,7 @@ fi
 if [[ "$5" ]]; then
   target="$5"
 else
-  target="lineage_bluejay"
+  target="lineage_bluejay-user"
   echo 'No target specified: Using default'
 fi
 
@@ -102,7 +102,7 @@ fi
 echo -ne '\n\n\n'
 
 . build/envsetup.sh
-lunch "$target"-user
+lunch "$target"
 eval "$buildCmd"
 exitStatus=$?
 
