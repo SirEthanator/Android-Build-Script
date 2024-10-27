@@ -67,6 +67,12 @@ echo '===================================='
 echo -ne '\n\n\n'
 
 rm -rf .repo/local_manifests
+rm -rf device/google/bluejay
+rm -rf device/google/bluejay-kernel
+rm -rf device/google/bluejay-sepolicy
+rm -rf device/google/gs101
+rm -rf device/google/gs101-sepolicy
+rm -rf device/google/gs-common
 repo init -u "$manifest" -b "$branch" --git-lfs
 git clone https://github.com/SirEthanator/bluejay_local_manifest.git -b "$localManifest" --depth 1 .repo/local_manifests
 /opt/crave/resync.sh
