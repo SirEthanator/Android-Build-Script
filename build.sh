@@ -2,10 +2,6 @@
 
 # SYNTAX: build.sh build-type manifest-url manifest-branch local-manifest-branch target build-command
 
-# ==== Install ccache ==== #
-sudo apt update; sudo apt install -y ccache
-
-
 # ==== Set variables ==== #
 if [[ "$1" ]]; then
   buildType=$(echo "$1" | tr '[:upper:]' '[:lower:]')
