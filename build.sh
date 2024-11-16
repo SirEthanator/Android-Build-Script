@@ -98,7 +98,7 @@ fi
 echo -ne '\n\n\n'
 
 . build/envsetup.sh
-lunch "$target"
+if [[ ! $target == 'nolunch' ]]; then lunch "$target"; fi
 eval "$buildCmd"
 exitStatus=$?
 
