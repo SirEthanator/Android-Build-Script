@@ -63,12 +63,9 @@ echo '===================================='
 echo -ne '\n\n\n'
 
 rm -rf .repo/local_manifests
-rm -rf device/google/bluejay
-rm -rf device/google/bluejay-kernel
-rm -rf device/google/bluejay-sepolicy
-rm -rf device/google/gs101
-rm -rf device/google/gs101-sepolicy
-rm -rf device/google/gs-common
+rm -rf vendor/gms
+rm -rf .repo/projects/vendor/gms.git
+rm -rf .repo/project-objects/*/android_vendor_gms.git
 repo init -u "$manifest" -b "$branch" --git-lfs
 git clone https://github.com/SirEthanator/bluejay_local_manifest.git -b "$localManifest" --depth 1 .repo/local_manifests
 /opt/crave/resync.sh
@@ -77,15 +74,14 @@ echo -ne '\n\n\n'
 echo '==================================='
 echo '========== Sync complete =========='
 echo '==================================='
-echo -ne '\n\n\n'
+echo -ne '\n'
 
 
 # ==== Build ==== #
-echo -ne '\n\n\n'
 echo '==================================='
 echo '========== Starting build ========='
 echo '==================================='
-echo -ne '\n'
+echo -ne '\n\n\n'
 
 # Build type selection
 if [[ ! $buildType == 'unset' ]]; then
@@ -95,7 +91,6 @@ if [[ ! $buildType == 'unset' ]]; then
     sed -i "s/.*WITH_GAPPS.*/WITH_GAPPS := false/" device/google/bluejay/lineage_bluejay.mk
   fi
 fi
-echo -ne '\n\n\n'
 
 . build/envsetup.sh
 if [[ ! $target == 'nolunch' ]]; then lunch "$target"; fi
